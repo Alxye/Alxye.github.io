@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵茜茜 - 个人主页 </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb; 
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .header-info h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .header-info .subtitle {
+            font-size: 1.2em;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary-color);
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .edu-item h3 {
+            font-size: 1.3em;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .edu-item .meta {
+            color: var(--text-light);
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .edu-item .courses {
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .project-item:hover {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f2ff 100%);
+        }
+
+        .project-item h3 {
+            font-size: 1.2em;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-item h3::before {
+            content: "▹";
+            color: var(--primary-color);
+            font-size: 1.3em;
+        }
+
+        .project-item p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Achievements */
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-list li {
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .achievement-list li::before {
+            content: "🏆";
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3em;
+        }
+
+        .achievement-list li strong {
+            color: var(--text-dark);
+        }
+
+        /* Self Evaluation */
+        .eval-item {
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .eval-item::before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .avatar {
+                width: 150px;
+                height: 150px;
+            }
+
+            .header-info h1 {
+                font-size: 2em;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header, .section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="133.png.JPG" alt="赵茜茜" class="avatar">
+            <div class="header-info">
+                <h1>赵茜茜</h1>
+                <p class="subtitle"> 阿里国际 Lazada Tech 研发</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <span>944652593@qq.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                工作背景
+            </h2>
+            <div class="edu-item">
+                <h3>阿里巴巴国际数字商业集团 - Lazada Tech</h3>
+                <p class="meta">研发工程师 | 负责跨境电商平台核心功能开发与优化</p>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                教育背景
+            </h2>
+            <div class="edu-item">
+                <h3>东南大学 - 软件工程硕士</h3>
+                <p class="meta">2022 - 2025届 | 主修课程：机器学习、人工智能、算法分析与设计、现代软件工程、面向对象的分析与设计</p>
+            </div>
+            <div class="edu-item">
+                <h3>杭州电子科技大学 - 数字媒体技术本科</h3>
+                <p class="meta">GPA: 4.36 (专业前5%) | 优秀毕业生 | 主修课程：计算机图形学、操作系统、人机交互技术、三维图形程序设计</p>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                专业技能
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>💻 编程开发</h3>
+                    <p>精通 C++、Python、Java，熟练使用 Vue 框架、Flask 框架、Git 代码协同</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🤖 AI与机器学习</h3>
+                    <p>熟悉机器学习算法和深度学习模型，掌握 Transformer 大模型原理，使用 PyTorch 框架</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🎨 图形与设计</h3>
+                    <p>掌握 3D 图形渲染、OpenGL 编程，擅长 Ps、Ai、Ae、Pr、Au、An 等设计软件</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📚 语言能力</h3>
+                    <p>大学英语四/六级（CET-4/6）</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research & Projects -->
+        <div class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                科研与项目经历
+            </h2>
+            
+            <div class="project-item">
+                <h3>发明专利：基于对数比调整的水下目标智能识别方法及系统（已授权）</h3>
+                <p>改进 Transformer 模型，在 loss 函数中引入全局对数比调整值优化，可应用于音频识别和水下目标信号识别</p>
+            </div>
+
+            <div class="project-item">
+                <h3>军工纵向课题（参与3项）</h3>
+                <p>基于机器学习的目标识别任务应用研究</p>
+            </div>
+
+            <div class="project-item">
+                <h3>智慧考勤系统（全栈开发，已上线）</h3>
+                <p>基于人脸识别与定位的智慧考勤系统 | <a href="https://www.bilibili.com/video/BV1mh41137yS/" class="project-link" target="_blank">查看演示 →</a></p>
+            </div>
+
+            <div class="project-item">
+                <h3>Unity3D 生存冒险游戏《Alive》</h3>
+                <p>第一人称视角生存冒险游戏 | <a href="https://www.bilibili.com/video/BV1964y1S7u4/" class="project-link" target="_blank">查看演示 →</a></p>
+            </div>
+
+            <div class="project-item">
+                <h3>卡牌游戏《三国杀无尽版》</h3>
+                <p>整合多人联机游戏玩法 | <a href="https://www.bilibili.com/video/BV1ap4y1t7Zx/" class="project-link" target="_blank">查看演示 →</a></p>
+            </div>
+
+            <div class="project-item">
+                <h3>安卓应用开发</h3>
+                <p>个人理财通（理财记账类APP）、废纸篓（图片搜集交互类APP）</p>
+            </div>
+
+            <div class="project-item">
+                <h3>Web 开发项目</h3>
+                <p>基于 Thinkphp5 框架的招聘类网站、个人网页设计</p>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                竞赛荣誉
+            </h2>
+            <ul class="achievement-list">
+                <li><strong>2020 浙江省"挑战杯·宁波江北"创新创业大赛</strong> — 三等奖</li>
+                <li><strong>浙江省新苗人才计划立项</strong> — "优视科技：超高清视频缩放转接器"团队项目</li>
+                <li><strong>学生会工作两年</strong> — 设计超150件宣传物料，策划组织多项活动</li>
+            </ul>
+        </div>
+
+        <!-- Self Evaluation -->
+        <div class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                关于我
+            </h2>
+            <div class="eval-item">学习能力强，热爱开发，能自主分析问题、解决问题</div>
+            <div class="eval-item">为人上进，性格友善，具备良好的沟通能力和团队协作精神</div>
+            <div class="eval-item">兼具科研能力与工程实践经验，在跨境电商领域持续深耕</div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: 20px; color: rgba(255,255,255,0.8);">
+            <p>© 2025 赵茜茜 · 个人主页 </p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/Alxye" target="_blank" style="color: rgba(255,255,255,0.8); text-decoration: none;">GitHub</a>
+                &nbsp;|&nbsp;
+                <a href="mailto:944652593@qq.com" style="color: rgba(255,255,255,0.8); text-decoration: none;">Email</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
